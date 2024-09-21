@@ -1,16 +1,22 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const connectDB = require('./db/connectDB.js')
+const userRouter = require('./routes/UserRoutes.js')
+const storyRouter = require('./routes/StoryRoutes.js')
 
-require("dotenv").process;
+
+require("dotenv").config()
 
 const app = express();
 app.use(express.json());
+app.use('/api/v1/user',userRouter)
+app.use('/api/v1/story',storyRouter)
 
 
-const start = ()=>{
+const start = async()=>{
     try{
-        app.listen(process.PORT,()=>{
-            console.log(`Listening on Port: ${process.PORT}`)
+        await connectDB(process.env.MONGO_URL)
+        app.listen(process.env.PORT,()=>{
+            console.log(`Listening on Port: ${process.env.PORT}`)
         })
     }catch(error){
         console.log(error)
