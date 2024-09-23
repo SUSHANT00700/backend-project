@@ -39,5 +39,4 @@ const addBookmark = async (req, res) => {
 
 module.exports = {
     addBookmark,
-    getBookmarks
 }

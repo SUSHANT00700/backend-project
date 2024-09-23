@@ -1,12 +1,25 @@
 const Story = require('../model/Story.js')
+const User = require('../model/User.js')
 
 const createStory = async (req, res) => {
     try {
-        const story = await Story.create(req.body)
+        const story = await Story.create(req.body.storyData)
+
+        const updateUser = await User.findByIdAndUpdate(req.body.userId,{$addToSet:{stories:story._id}},{new:true,runValidators:true});
+
+        if(!updateUser){
+            return res.status(404).json({
+                success:false,
+                error:'User_Not_Found',
+                message:'User ID is wrong'
+            })
+        }
+
         return res.status(200).json({
             success: true,
             payload: story
         })
+        
     } catch (error) {
         return res.status(500).json({
             success: false,
