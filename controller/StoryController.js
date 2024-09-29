@@ -81,7 +81,7 @@ const updateStory = async(req,res)=>{
 }
 
 const getAllStories = async(req,res)=>{
-    const stories = await Story.findAll({})
+    const stories = await Story.find({})
     
     const formattedStories = stories.map(story => ({
         _id:story._id,
