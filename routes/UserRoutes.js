@@ -7,7 +7,7 @@ const {addBookmark} = require('../controller/BookmarkController.js')
 
 
 userRouter.post("/register", registerUser);
-userRouter.get("/login", loginUser);
+userRouter.post("/login", loginUser);
 userRouter.put("/update/:id", updateUser);
 userRouter.post("/bookmark",addBookmark);
 
