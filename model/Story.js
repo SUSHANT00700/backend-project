@@ -5,7 +5,7 @@ const CATEGORIES = ['food','health and fitness','travel','movies','education']
 const slidesSchema = mongoose.Schema({
     heading:{type:String,required:true},
     description:{type:String,required:true},
-    image:{type:String,required:true},
+    imgURL:{type:String,required:true},
 })
 
 const Story = mongoose.Schema({
